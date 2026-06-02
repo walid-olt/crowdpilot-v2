@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { userRegisterSchema } from "./schemas/register.schema.ts";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
@@ -42,10 +42,10 @@ export default function RegisterPage() {
     mutate(formData);
   }
 
-  // const [params] = useSearchParams();
+  const [params] = useSearchParams();
 
-  // const defaultRole =
-  //   params.get("role")?.toUpperCase() || ("OWNER" as "OWNER" | "INVESTOR");
+  const defaultRole =
+    params.get("role")?.toUpperCase() || ("OWNER" as "OWNER" | "INVESTOR");
 
   const {
     register,
@@ -65,9 +65,9 @@ export default function RegisterPage() {
           <h1 className="font-serif text-4xl leading-tight">
             Create your account
           </h1>
-          {/* <p className="text-sm text-muted-foreground"> */}
-          {/*   Choose a role and complete the basics to get started. */}
-          {/* </p> */}
+          <p className="text-sm text-muted-foreground">
+            Choose a role and complete the basics to get started.
+          </p>
         </div>
 
         <form className="mt-8 space-y-4" onSubmit={handleSubmit(onSubmit)}>
@@ -136,6 +136,27 @@ export default function RegisterPage() {
             )}
           </div>
 
+          <div className="space-y-2">
+            <label
+              htmlFor="role"
+              className="text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground"
+            >
+              ROLE
+            </label>
+            <select
+              {...register("role")}
+              id="role"
+              name="role"
+              defaultValue={defaultRole}
+              className="flex h-12 w-full items-center justify-between rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <option value="" disabled>
+                Select a role
+              </option>
+              <option value="OWNER">Project owner</option>
+              <option value="INVESTOR">Investor</option>
+            </select>
+          </div>
           <Button
             type="submit"
             className="w-full disabled:grayscale h-10"

@@ -1,21 +1,13 @@
-import Guard from "@/components/Guard";
-import { Button } from "@/components/ui/button";
 import { formatter } from "@/lib/utils";
-import { PenBoxIcon, Trash2Icon } from "lucide-react";
 import { useParams } from "react-router-dom";
-import {
-  useProjectDeleteDialogue,
-  useProjectDetailsQuery,
-  useProjectUpdateDialogue,
-} from "../hooks";
+import { useProjectDetailsQuery } from "../hooks";
+import ProjectDetailsActions from "./ProjectDetailsActions";
 const ProjectDetails = () => {
   const { id } = useParams();
   const { data } = useProjectDetailsQuery(String(id));
 
   const project = data!;
 
-  const { open } = useProjectDeleteDialogue(project);
-  const { open: openUpdate } = useProjectUpdateDialogue(project);
   let percentageFunded;
   if (project && project.currentCapital && project.targetCapital) {
     percentageFunded = (
@@ -42,40 +34,7 @@ const ProjectDetails = () => {
                   ID {project._id}
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <Guard
-                  toolTipSide="bottom"
-                  when={project.status === "CLOSED"}
-                  reason="You can't edit a project that has been closed"
-                >
-                  <Button
-                    variant={"secondary"}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openUpdate();
-                    }}
-                  >
-                    Edit <PenBoxIcon />
-                  </Button>
-                </Guard>
-
-                <Guard
-                  toolTipSide="bottom"
-                  when={project.status === "CLOSED"}
-                  reason="You can't delete a project that has been closed"
-                >
-                  <Button
-                    variant={"destructive"}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      open();
-                    }}
-                  >
-                    {" "}
-                    Delete <Trash2Icon />
-                  </Button>
-                </Guard>
-              </div>
+              <ProjectDetailsActions project={project} />
             </header>
 
             <div className="mx-auto mt-10 flex w-full max-w-2xl flex-col items-center gap-8 text-center">

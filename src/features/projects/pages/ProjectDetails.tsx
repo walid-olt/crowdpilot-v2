@@ -4,7 +4,7 @@ import QueryContainer from "@/components/QueryContainer";
 import ProjectDeleteDialogue from "../components/ProjectDeleteDialogue";
 import ProjectUpdateDialogue from "../components/ProjectUpdateDialogue";
 
-const ProjectDetailsPage = () => {
+export const Component = () => {
   return (
     <>
       <QueryContainer
@@ -18,5 +18,3 @@ const ProjectDetailsPage = () => {
     </>
   );
 };
-
-export default ProjectDetailsPage;
