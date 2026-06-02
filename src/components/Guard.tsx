@@ -17,7 +17,10 @@ const Guard = ({ reason, when, toolTipSide = "top", children }: Props) => {
   if (!when) return children;
   const Element = React.cloneElement(children, {
     "aria-disabled": true,
-    className: cn(children?.props?.className, "opacity-50 cursor-not-allowed"),
+    className: cn(
+      children?.props?.className,
+      " opacity-50 cursor-not-allowed *:disabled",
+    ),
     onClick: (e) => {
       e.preventDefault();
       e.stopPropagation();

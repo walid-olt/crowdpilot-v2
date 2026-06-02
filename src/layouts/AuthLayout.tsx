@@ -1,10 +1,13 @@
 import { AppSidebar } from "@/components/App-sidebar";
+import Loading from "@/components/Loading";
+import NavigationLoading from "@/components/NavigationLoading";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-
 export default function AuthLayout() {
   return (
     <SidebarProvider defaultOpen={false}>
+      <NavigationLoading />
       <div className="min-h-screen w-full">
         <AppSidebar />
         <main className="p-2">
@@ -14,7 +17,9 @@ export default function AuthLayout() {
             size={"icon-lg"}
           />
           <section className="mt-12">
-            <Outlet />
+            <Suspense fallback={<Loading message="Loading..." />}>
+              <Outlet />
+            </Suspense>
           </section>
         </main>
       </div>

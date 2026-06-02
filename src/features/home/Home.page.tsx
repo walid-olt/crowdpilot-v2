@@ -27,6 +27,12 @@ export default function HomePage() {
             >
               Launch a project
             </Link>
+            <Link
+              to="/register?role=investor"
+              className="inline-flex items-center justify-center rounded-(--radius) border border-foreground/20  px-6 py-3 text-sm font-medium uppercase tracking-[0.2em] text-foreground transition hover:bg-primary hover:text-background"
+            >
+              Invest in projects
+            </Link>
           </div>
 
           <p className="text-sm text-muted-foreground">

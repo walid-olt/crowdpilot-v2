@@ -4,7 +4,7 @@ import ProjectDeleteDialogue from "../components/ProjectDeleteDialogue.tsx";
 import ProjectUpdateDialogue from "../components/ProjectUpdateDialogue.tsx";
 import QueryContainer from "@/components/QueryContainer.tsx";
 import Error from "@/components/Error.tsx";
-const ProjectsPage = () => {
+const OwnerProjects = () => {
   return (
     <main className="px-4 py-10">
       <ProjectsHeader />
@@ -21,4 +21,4 @@ const ProjectsPage = () => {
   );
 };
 
-export default ProjectsPage;
+export default OwnerProjects;

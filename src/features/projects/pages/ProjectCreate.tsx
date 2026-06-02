@@ -1,11 +1,9 @@
 import { ProjectCreateForm } from "../components/ProjectCreateForm";
 
-const ProjectCreatePage = () => {
+export const Component = () => {
   return (
     <main className="px-4 ">
       <ProjectCreateForm />
     </main>
   );
 };
-
-export default ProjectCreatePage;
