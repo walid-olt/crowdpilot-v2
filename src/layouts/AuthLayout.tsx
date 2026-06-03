@@ -12,7 +12,7 @@ export default function AuthLayout() {
         <AppSidebar />
         <main className="p-2">
           <SidebarTrigger
-            className=" fixed top-2 left-4 "
+            className=" fixed  inset-1"
             variant={"outline"}
             size={"icon-lg"}
           />

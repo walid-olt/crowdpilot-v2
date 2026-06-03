@@ -7,9 +7,24 @@ import type {
 } from "@/types/api";
 import { AxiosError } from "axios";
 
-export const getProjects = async (): Promise<ProjectsResponse> => {
+export const getOwnerProjects = async (): Promise<ProjectsResponse> => {
   try {
     const { data } = await apiClient.get<ProjectsResponse>("/projects/mine");
+    return data;
+  } catch (e) {
+    if (e instanceof AxiosError) {
+      throw new Error(e.response?.data.message, {
+        cause: e,
+        ...e.response?.data,
+      });
+    } else {
+      throw e;
+    }
+  }
+};
+export const getAllProjects = async (): Promise<ProjectsResponse> => {
+  try {
+    const { data } = await apiClient.get<ProjectsResponse>("/projects/open");
     return data;
   } catch (e) {
     if (e instanceof AxiosError) {

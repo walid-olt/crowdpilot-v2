@@ -1,19 +1,15 @@
-import { LucidePlus } from "lucide-react";
 import { Item, ItemTitle } from "@/components/ui/item";
-import { NavLink } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-const ProjectsHeader = () => {
+type Props = {
+  children?: React.ReactNode;
+};
+const ProjectsHeader = ({ children }: Props) => {
   return (
     <section className="flex flex-col gap-4">
       <div>
         <Item>
           <ItemTitle className="text-2xl font-bold justify-between flex w-full py-1">
             <h1>Projects</h1>
-            <NavLink to={"create"}>
-              <Button>
-                <LucidePlus /> new
-              </Button>
-            </NavLink>
+            {children}
           </ItemTitle>
         </Item>
       </div>

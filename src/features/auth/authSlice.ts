@@ -19,18 +19,6 @@ const initialState: AuthState = {
   token: null,
 };
 
-const testUser: User = {
-  id: "1",
-  name: "John Doe",
-  email: "john@johns.com",
-  balance: 10_1000,
-  role: "OWNER",
-};
-const testState: AuthState = {
-  isAuthenticated: true,
-  user: testUser,
-  token: "test-token",
-};
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -46,8 +34,11 @@ const authSlice = createSlice({
       state.token = null;
       localStorage.removeItem("token");
     },
+    setUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, setUser } = authSlice.actions;
 export default authSlice.reducer;
