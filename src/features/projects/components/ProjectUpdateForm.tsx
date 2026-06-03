@@ -6,7 +6,6 @@ import { useUpdateProjectMutation } from "../hooks";
 import { LucideLoader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import type { Project } from "@/types/api";
 import {
   AlertDialogAction,
@@ -20,7 +19,6 @@ type Props = {
 };
 
 export const ProjectUpdateForm = ({ project, onClose }: Props) => {
-  const navigate = useNavigate();
   const { mutate, isPending } = useUpdateProjectMutation();
   const {
     register,
@@ -57,12 +55,10 @@ export const ProjectUpdateForm = ({ project, onClose }: Props) => {
           toast.dismiss(tid);
           toast.error(e.message);
         },
-        onSuccess: (response) => {
-          const updated = response.data!;
+        onSuccess: () => {
           toast.dismiss(tid);
           toast.success("Project updated successfully");
           onClose();
-          navigate(`/app/projects/${updated._id}`);
         },
       },
     );

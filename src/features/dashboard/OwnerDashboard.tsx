@@ -1,15 +1,14 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { FolderClosedIcon as EmptyIcon } from "lucide-react";
 import QueryContainer from "@/components/QueryContainer";
 import EmptyResult from "@/components/EmptyResult";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getProjects } from "@/features/projects/api";
 import { formatter } from "@/lib/utils";
-import { useAppSelector } from "@/store/hooks";
 
 const DashboardContent = () => {
-  const user = useAppSelector((state) => state.auth.user);
   const { data } = useSuspenseQuery({
     queryFn: () => getProjects(),
     queryKey: ["projects"],
@@ -37,12 +36,7 @@ const DashboardContent = () => {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
       <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Dashboard
-          </p>
-          <h1 className="text-2xl font-semibold text-foreground">
-            Welcome back{user?.name ? `, ${user.name}` : ""}.
-          </h1>
+          <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
           <p className="text-sm text-muted-foreground">
             Track funding progress and keep projects moving.
           </p>
@@ -83,7 +77,7 @@ const DashboardContent = () => {
             Average funded
           </p>
           <p className="mt-2 text-2xl font-semibold text-foreground">
-            {totalTarget ? `${averageFunded}%` : "—"}
+            {totalTarget ? `${averageFunded}%` : "N/A"}
           </p>
           <p className="text-xs text-muted-foreground">Based on active goals</p>
         </div>
@@ -103,6 +97,7 @@ const DashboardContent = () => {
           <EmptyResult
             title="No projects yet"
             description="Create your first project to start raising funds."
+            icon={<EmptyIcon className="h-8 w-8" />}
             className="mt-4"
           >
             <Button asChild size="sm">

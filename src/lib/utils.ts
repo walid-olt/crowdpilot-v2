@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 // We go i18n at home
 class Formatter {
-  INTEGER_FORMATTER = new Intl.NumberFormat("fr-MA", {
+  private INTEGER_FORMATTER = new Intl.NumberFormat("fr-MA", {
     style: "currency",
     currency: "MAD",
     maximumFractionDigits: 0,
@@ -21,6 +21,10 @@ class Formatter {
 
   currency(amount: number) {
     return this.INTEGER_FORMATTER.format(amount);
+  }
+
+  currencyType() {
+    return this.INTEGER_FORMATTER.resolvedOptions().currency;
   }
 }
 
