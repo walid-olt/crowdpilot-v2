@@ -17,7 +17,8 @@ const baseProjectSchema = z.object({
       invalid_type_error: "Target capital must be a valid number",
     })
     .positive("Target capital must be greater than 0")
-    .finite(),
+    .finite()
+    .min(200),
   ownerInvestment: z
     .number({
       coerce: true,
