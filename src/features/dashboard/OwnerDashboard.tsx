@@ -5,12 +5,12 @@ import QueryContainer from "@/components/QueryContainer";
 import EmptyResult from "@/components/EmptyResult";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getProjects } from "@/features/projects/api";
+import { getOwnerProjects } from "@/features/projects/api";
 import { formatter } from "@/lib/utils";
 
 const DashboardContent = () => {
   const { data } = useSuspenseQuery({
-    queryFn: () => getProjects(),
+    queryFn: () => getOwnerProjects(),
     queryKey: ["projects"],
     staleTime: 1000 * 60 * 5,
   });

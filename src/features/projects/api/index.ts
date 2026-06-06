@@ -24,7 +24,7 @@ export const getOwnerProjects = async (): Promise<ProjectsResponse> => {
 };
 export const getAllProjects = async (): Promise<ProjectsResponse> => {
   try {
-    const { data } = await apiClient.get<ProjectsResponse>("/projects/open");
+    const { data } = await apiClient.get<ProjectsResponse>("/projects");
     return data;
   } catch (e) {
     if (e instanceof AxiosError) {
