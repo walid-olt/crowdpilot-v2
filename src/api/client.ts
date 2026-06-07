@@ -37,5 +37,5 @@ apiClient.interceptors.response.use(
 );
 
 export const queryClient = new QueryClient({
-  defaultOptions: { queries: { retry: 3 } },
+  defaultOptions: { queries: { retry: 3, throwOnError: true } },
 });

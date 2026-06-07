@@ -8,6 +8,8 @@ type QueryContainerProps = {
   children: ReactNode;
   /** Custom message passed to the default Loading component */
   loadingMessage?: string;
+  /** Custom message passed to the default Error component */
+  errorMessage?: string;
   /** Optional custom loading component if you want to override <Loading /> entirely */
   loadingFallback?: ReactNode;
   /** Optional custom error fallback component */
@@ -24,6 +26,7 @@ const QueryContainer = ({
   children,
   loadingMessage = "Loading...",
   loadingFallback,
+
   errorFallback: CustomErrorFallback,
 }: QueryContainerProps) => {
   return (
