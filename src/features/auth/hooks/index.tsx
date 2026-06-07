@@ -8,7 +8,7 @@ export function useLogin() {
   return ({ user, token }: Parameters<typeof login>[0]) => {
     localStorage.setItem("token", token);
     dispatch(login({ user, token }));
-    navigate("/app/dashboard", { replace: true });
+    navigate("/app", { replace: true });
   };
 }
 

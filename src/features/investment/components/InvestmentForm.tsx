@@ -33,7 +33,7 @@ const InvestmentForm = () => {
     formState: { errors },
     handleSubmit,
   } = useForm({
-    mode: "all",
+    mode: "onChange",
 
     resolver: zodResolver(schema),
   });

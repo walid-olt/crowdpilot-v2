@@ -21,7 +21,13 @@ const ProjectsTable = ({ projects }: Props) => {
   return (
     <div className="overflow-x-auto mx-4 rounded-md outline outline-secondary shadow-xl">
       <Table className="rounded-md!">
-        <TableHeader>
+        <TableHeader
+          style={{
+            position: "sticky",
+            top: 0,
+            backgroundColor: "var(--background)",
+          }}
+        >
           <TableRow>
             <TableHead>Title</TableHead>
             <TableHead>Description</TableHead>
