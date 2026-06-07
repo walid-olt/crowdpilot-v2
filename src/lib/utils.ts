@@ -19,7 +19,7 @@ class Formatter {
     return this.DATE_FORMATTER.format(new Date(date));
   }
 
-  currency(amount: number) {
+  currency(amount: number = 0) {
     return this.INTEGER_FORMATTER.format(amount);
   }
 

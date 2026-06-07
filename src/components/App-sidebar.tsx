@@ -24,6 +24,7 @@ import { NavLink } from "react-router-dom";
 import { useAppSelector } from "@/store/hooks";
 import { cn } from "@/lib/utils";
 import { useLogout } from "@/features/auth/hooks";
+import type { Role } from "@/types/api";
 
 type NavLinkItem = {
   name: string;
@@ -32,14 +33,14 @@ type NavLinkItem = {
 };
 
 const baseLinks: NavLinkItem[] = [
-  { name: "Dashboard", path: "dashboard", icon: LayoutDashboard },
   { name: "Projects", path: "projects", icon: Briefcase },
 ];
-const roleLinks: Record<string, NavLinkItem[]> = {
+const roleLinks: { [K in Role]?: NavLinkItem[] } = {
   INVESTOR: [
     { name: "Wallet", path: "wallet", icon: Wallet },
     { name: "Portfolio", path: "portfolio", icon: FolderKanban },
   ],
+  OWNER: [{ name: "Dashboard", path: "dashboard", icon: LayoutDashboard }],
 };
 
 export function AppSidebar() {
@@ -50,7 +51,7 @@ export function AppSidebar() {
   if (!user) return null; // just in case, but ideally this component shouldn't render if there's no user
   const { email, role, name, balance } = user;
 
-  const links = [...baseLinks, ...(roleLinks[role] ?? [])];
+  const links = [...(roleLinks[role] ?? []), ...baseLinks];
 
   return (
     <Sidebar onPointerLeave={() => setOpen(false)}>

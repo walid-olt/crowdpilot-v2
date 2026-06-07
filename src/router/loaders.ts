@@ -28,7 +28,13 @@ async function bootstrapAuthFromStorage() {
 export async function publicLoader() {
   const { token, user } = await bootstrapAuthFromStorage();
   if (user || token) {
-    return redirect("/app/dashboard");
+    switch (user?.role) {
+      case "OWNER":
+        return redirect("/app/dashboard");
+
+      case "INVESTOR":
+        return redirect("/app/portfolio");
+    }
   }
   return null;
 }

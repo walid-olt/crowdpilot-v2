@@ -17,7 +17,7 @@ export default function AuthLayout() {
             size={"icon-lg"}
           />
           <section className="mt-12">
-            <Suspense fallback={<Loading message="Loading..." />}>
+            <Suspense fallback={<Loading />}>
               <Outlet />
             </Suspense>
           </section>

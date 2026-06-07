@@ -9,13 +9,9 @@ export const appRoutes: RouteObject[] = [
     path: "/app",
     element: <AuthLayout />,
     hydrateFallbackElement: <Loading />,
+
     loader: authLoader,
     children: [
-      {
-        index: true,
-        path: "dashboard",
-        lazy: () => import("@/features/dashboard/Dashboard.tsx"),
-      },
       {
         path: "projects",
         lazy: () => import("@/features/projects/pages/Projects.tsx"),
@@ -28,11 +24,17 @@ export const appRoutes: RouteObject[] = [
         element: <RoleBasedRoute allowedRoles={["OWNER"]} />,
         children: [
           {
+            index: true,
+            path: "dashboard",
+            lazy: () => import("@/features/dashboard/Dashboard.tsx"),
+          },
+          {
             path: "projects/create",
             lazy: () => import("@/features/projects/pages/ProjectCreate.tsx"),
           },
         ],
       },
+
       {
         element: <RoleBasedRoute allowedRoles={["INVESTOR"]} />,
         children: [
@@ -41,6 +43,7 @@ export const appRoutes: RouteObject[] = [
             lazy: () => import("@/features/wallet/Wallet.tsx"),
           },
           {
+            index: true,
             path: "portfolio",
             lazy: () => import("@/features/portfolio/Portfolio.tsx"),
           },
